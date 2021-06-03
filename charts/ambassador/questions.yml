@@ -37,14 +37,14 @@ questions:
 ### Deployment Management
 - variable: podAnnotations
   label: Pod Annotations
-  description: "Additional pod annotations"
-  type: multiline
+  description: "Additional pod annotations.  Use JSON formatted map string."
+  type: string
   required: false
   group: "Deployment Settings"
 - variable: envRaw
   label: Environment Variables
-  description: "Additional env variables to add to pods.  Uses regular kubernetes env formatting."
-  type: multiline
+  description: "Additional env variables to add to pods.  Use JSON formatted map string."
+  type: string
   required: false
   group: "Deployment Settings"
 - variable: daemonSet
@@ -66,16 +66,10 @@ questions:
   show_if: "daemonSet=false"
 - variable: resources
   label: Resources
-  description: "Resource allocation for pods"
-  type: multiline
+  description: "Resource allocation for pods.  Use JSON formatted map string."
+  type: string
   required: true
-  default: |
-    {
-      "limits":
-        {"cpu":"1000m","memory":"600Mi"},
-      "requests":
-        {"cpu":"200m","memory":"300Mi"}
-    }
+  default: '{"limits": {"cpu":"1000m","memory":"600Mi"}, "requests": {"cpu":"200m","memory":"300Mi"}}'
   group: "Deployment Settings"
 - variable: volumes
   label: "Volumes"
@@ -85,7 +79,7 @@ questions:
   group: "Deployment Settings"
 - variable: volumeMounts
   label: "Volume Mounts"
-  description: "Create additional volume mounts to connect Ambassador to volumes"
+  description: "Create additional volume mounts to connect Ambassador to volumes.  Use YAML formatted map."
   type: multiline
   required: false
   default: ""
@@ -94,8 +88,8 @@ questions:
 ### Service Settings
 - variable: service.annotations
   label: Service Annotations
-  description: "Additional service annotations"
-  type: multiline
+  description: "Additional service annotations.  Use JSON formatted map string."
+  type: string
   required: false
   group: "Service Settings"
 - variable: service.type
@@ -121,7 +115,7 @@ questions:
 - variable: licenseKey.value
   label: "License Key Data"
   description: "Specifies the license key to apply"
-  type: string
+  type: secret
   required: false
   default: ""
   group: "License Settings"
