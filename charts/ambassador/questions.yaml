@@ -34,21 +34,18 @@ questions:
   group: "CRD Management"
   show_if: "crds.enabled=true"
 
-
 ### Deployment Management
 - variable: podAnnotations
   label: Pod Annotations
   description: "Additional pod annotations"
   type: multiline
   required: false
-  default: ""
   group: "Deployment Settings"
 - variable: envRaw
   label: Environment Variables
   description: "Additional env variables to add to pods.  Uses regular kubernetes env formatting."
   type: multiline
   required: false
-  default: ""
   group: "Deployment Settings"
 - variable: daemonSet
   label: Deployment or Daemonset
@@ -70,20 +67,21 @@ questions:
 - variable: resources
   label: Resources
   description: "Resource allocation for pods"
-  type: enum
-  required: false
-  default: ""
+  type: multiline
+  required: true
+  default: |
+    {
+      "limits":
+        {"cpu":"1000m","memory":"600Mi"},
+      "requests":
+        {"cpu":"200m","memory":"300Mi"}
+    }
   group: "Deployment Settings"
-  options:
-    - '{"limits":{"cpu":"1000m","memory":"600Mi"},"requests":{"cpu":"200m","memory":"300Mi"}}'
-    - '{"limits":{"cpu":"2000m","memory":"1200Mi"},"requests":{"cpu":"200m","memory":"300Mi"}}'
-    - '{"limits":{"cpu":"3000m","memory":"1800Mi"},"requests":{"cpu":"200m","memory":"300Mi"}}'
 - variable: volumes
   label: "Volumes"
   description: "Create additional volumes on the pod"
   type: multiline
   required: false
-  default: ""
   group: "Deployment Settings"
 - variable: volumeMounts
   label: "Volume Mounts"
@@ -99,7 +97,6 @@ questions:
   description: "Additional service annotations"
   type: multiline
   required: false
-  default: ""
   group: "Service Settings"
 - variable: service.type
   label: Service Type
