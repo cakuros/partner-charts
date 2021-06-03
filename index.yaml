@@ -6,9 +6,9 @@ entries:
       catalog.cattle.io/release-name: ambassador
     apiVersion: v1
     appVersion: 1.13.6
-    created: "2021-06-03T12:51:10.435748-04:00"
+    created: "2021-06-03T15:23:20.008382-04:00"
     description: A Helm chart for Datawire Ambassador
-    digest: 2daabf4f6bc78a856781b00e8ad99c6e5ec9c12bee46085ca63f730ad8c5bb7c
+    digest: 501b30dac7a8940821f5368c1d2a1fe86a995122635bbdc3e1700ea1b2a955c3
     home: https://www.getambassador.io/
     icon: https://www.getambassador.io/images/logo.png
     keywords:
@@ -32,4 +32,4 @@ entries:
     urls:
     - assets/ambassador/ambassador-6.7.900.tgz
     version: 6.7.900
-generated: "2021-06-03T12:51:10.431491-04:00"
+generated: "2021-06-03T15:23:20.002257-04:00"
