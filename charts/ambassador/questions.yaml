@@ -1,0 +1,131 @@
+questions:
+# - variable:
+#   label:
+#   description:
+#   type:
+#   required:
+#   default:
+#   group:
+#   min_length:
+#   max_length:
+#   min:
+#   max:
+#   options:
+#   valid_chars:
+#   invalid_chars:
+#   show_if:
+#   show_subquestion_if:
+#   subquestions:
+
+### CRD Management
+- variable: crds.enabled
+  label: Create CRDs
+  description: "Should Ambassador Edge Stack create and manage its CRD's?"
+  type: boolean
+  required: false
+  default: "true"
+  group: "CRD Management"
+- variable: crds.keep
+  label: Keep CRDs
+  description: "Should Ambassador Edge Stack keep CRD's when the chart is uninstalled?"
+  type: boolean
+  required: false
+  default: "true"
+  group: "CRD Management"
+  show_if: "crds.enabled=true"
+
+
+### Deployment Management
+- variable: podAnnotations
+  label: Pod Annotations
+  description: "Additional pod annotations"
+  type: multiline
+  required: false
+  default: ""
+  group: "Deployment Settings"
+- variable: envRaw
+  label: Environment Variables
+  description: "Additional env variables to add to pods.  Uses regular kubernetes env formatting."
+  type: multiline
+  required: false
+  default: ""
+  group: "Deployment Settings"
+- variable: daemonSet
+  label: Deployment or Daemonset
+  description: "Deploy Ambassador Edge Stack as a Daemonset? (Recommended: false)"
+  type: boolean
+  required: false
+  default: "false"
+  group: "Deployment Settings"
+- variable: replicaCount
+  label: Replica Count
+  description: "How many replicas should Ambassador Edge Stack run? (Recommended: 3)"
+  type: int
+  required: false
+  default: "3"
+  group: "Deployment Settings"
+  min: 1
+  max: 999
+  show_if: "daemonSet=false"
+- variable: resources
+  label: Resources
+  description: "Resource allocation for pods"
+  type: enum
+  required: false
+  default: ""
+  group: "Deployment Settings"
+  options:
+    - '{"limits":{"cpu":"1000m","memory":"600Mi"},"requests":{"cpu":"200m","memory":"300Mi"}}'
+    - '{"limits":{"cpu":"2000m","memory":"1200Mi"},"requests":{"cpu":"200m","memory":"300Mi"}}'
+    - '{"limits":{"cpu":"3000m","memory":"1800Mi"},"requests":{"cpu":"200m","memory":"300Mi"}}'
+- variable: volumes
+  label: "Volumes"
+  description: "Create additional volumes on the pod"
+  type: multiline
+  required: false
+  default: ""
+  group: "Deployment Settings"
+- variable: volumeMounts
+  label: "Volume Mounts"
+  description: "Create additional volume mounts to connect Ambassador to volumes"
+  type: multiline
+  required: false
+  default: ""
+  group: "Deployment Settings"
+
+### Service Settings
+- variable: service.annotations
+  label: Service Annotations
+  description: "Additional service annotations"
+  type: multiline
+  required: false
+  default: ""
+  group: "Service Settings"
+- variable: service.type
+  label: Service Type
+  description: "Set the type of service, LoadBalancer (recommended), NodePort, or ClusterIP"
+  type: enum
+  required: false
+  default: "LoadBalancer"
+  group: "Service Settings"
+  options:
+    - "LoadBalancer"
+    - "ClusterIP"
+    - "NodePort"
+
+### Licensing
+- variable: licenseKey.createSecret
+  label: "Create License Key Secret"
+  description: "Creates the license key secret using the License Key Data"
+  type: boolean
+  required: false
+  default: "true"
+  group: "License Settings"
+- variable: licenseKey.value
+  label: "License Key Data"
+  description: "Specifies the license key to apply"
+  type: string
+  required: false
+  default: ""
+  group: "License Settings"
+  show_if: "licenseKey.createSecret=true"
