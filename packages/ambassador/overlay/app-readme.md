@@ -10,4 +10,4 @@ The default installation of Ambassador Edge Stack includes the deployment needed
 
 Visit the [Quick Start](https://www.getambassador.io/docs/edge-stack/latest/tutorials/getting-started/) page for more instructions, or check out our [documentation](https://www.getambassador.io/docs/edge-stack).  For any questions, or to join the community, visit our [Slack](https://a8r.io/slack) and say hi!
 
-Ambassador recommends a Kubernetes version of 1.16 or higher.
+* Ambassador recommends a Kubernetes version of 1.16 or higher.
